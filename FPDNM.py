@@ -40,7 +40,7 @@ class FPDNM():
         self.nodelist = nodelist
         self.fi_dist = fi_dist            # Fitness distribution (prior), options: "normal", "log-exponential", "pareto" (Warning: "pareto" is not adequate because of non-log-concativity.)
         self.ars_a, self.ars_b, self.ars_domain = self.ars_params()           # ARS function's parameters
-        self.nodes = self.nodes_()        # Selected M nodes if M is specified, otherwise it is all of the nodes
+        self.nodes = self.nodes_()        # Select M nodes if M is specified.
         self.n_pa = len(self.beta0)
         self.m = m                        # Number of sampled fitness used in EM algorithm
         self.T = len(data)
@@ -50,7 +50,7 @@ class FPDNM():
         self.z = dict()
         self.beta = None
         self.betaCov = None
-        self.beta_list = list()           # List of beta's in EM algorithm
+        self.beta_list = list()         
         if descriptions == True :
             print("Number of nodes: %d." %(len(self.data[0]['nodeList'])))
             print("Number of edges (t=0, 1, ... , T-1): ", end=' ')
@@ -63,7 +63,7 @@ class FPDNM():
             print("")
 
     def nodes_(self):
-        if self.sampling_method == "default":                 # "default": consider all nodes over all time step.
+        if self.sampling_method == "default":                 # "default": consider all nodes.
             nodes_all = self.data[0]['nodeList']
             if self.M == None : 
                 return nodes_all
@@ -427,7 +427,7 @@ if __name__ == '__main__':
     Data = pickle.load(f)
     f.close()
     # Apply fpdnm
-    fp = FPDNM(data=Data, datatype=2, sampling_method="initial", n_eff=300, beta0=[-5.0000, 1.0000, 0.2000], M=1000)
+    fp = FPDNM(data=Data, datatype=2, sampling_method="initial", n_eff=300, beta0=[-5.0000, 1.0000, 0.0000], M=1000)
     fp.EM_(max_it=150, tol=0.00001, disp=True)
     print("Estimated beta parameter: ", fp.beta)
     print("Estimated standard error: ", np.sqrt(np.diag(fp.betaCov)))
