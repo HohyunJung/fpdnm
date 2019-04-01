@@ -7,7 +7,7 @@ Assumption: invariant fitness
 
 Usage: 
 
-    fp = FPDNM(data=Data, datatype=2, sampling_method="initial", n_eff=300, beta0=[-5.0000, 1.0000, 0.2000], M=1000)
+    fp = FPDNM(data=Data, datatype=2, sampling_method="initial", n_eff=300, beta0=[-5.0000, 1.0000, 0.0000], M=1000)
     fp.EM_(max_it=150, tol=0.00001, disp=True)
 """
 
@@ -42,7 +42,7 @@ class FPDNM():
         self.ars_a, self.ars_b, self.ars_domain = self.ars_params()           # ARS function's parameters
         self.nodes = self.nodes_()        # Select M nodes if M is specified.
         self.n_pa = len(self.beta0)
-        self.m = m                        # Number of sampled fitness used in EM algorithm
+        self.m = m                        # Number of fitness samples used in EM algorithm
         self.T = len(data)
         self.n = self.n_()
         self.y = self.y_()
