@@ -6,7 +6,7 @@ Jung, H., Lee, J., Lee, N., and Kim, S., (2018) "Comparison of Fitness and Popul
 Assumption: invariant fitness
 
 Usage: 
-
+    (Needs data file)
     fp = FPDNM(data=Data, datatype=2, sampling_method="initial", n_eff=300, beta0=[-5.0000, 1.0000, 0.0000], M=1000)
     fp.EM_(max_it=150, tol=0.00001, disp=True)
 """
